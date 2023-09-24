@@ -1,6 +1,7 @@
 const express = require('express');
 const { connection } = require('./database/connection');
 const cors = require('cors');
+const routes = require('./routes');
 
 class Server {
     constructor ( server = express())
@@ -25,7 +26,9 @@ class Server {
         const PORT = 3333
         app.listen(PORT, () => console.log(`Servidor está rodando na porta ${PORT}`))
     }
-    
+    async allRoutes(app) {
+        app.use(routes)
+    }    
 };
 
 module.exports = { Server }
